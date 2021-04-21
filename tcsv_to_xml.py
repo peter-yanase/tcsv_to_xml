@@ -21,10 +21,8 @@ for file_name in os.listdir():
         if do_or_not == 'y':
             first_row = True
             tags = []
-            collection = input('Name your collection.\n')
-            collection = normalize(collection)
-            entry = input('Name your entries.\n')
-            entry = normalize(entry)
+            collection = normalize(input('Name your collection.\n'))
+            entry = normalize(input('Name your entries.\n'))
             header = '<?xml version="1.0" encoding="UTF-8"?>\n<' + collection + '>\n'
             footer = '</' + collection + '>'
             output_file_name = file_name[:-3] + 'xls'
@@ -48,5 +46,5 @@ for file_name in os.listdir():
         elif do_or_not == 'n':
             break
         else:
-            print('Input y or n\n')
+            print('y or n\n')
 print('No more CSV or TSV files to convert!')
