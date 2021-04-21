@@ -46,5 +46,5 @@ for file_name in os.listdir():
         elif do_or_not == 'n':
             break
         else:
-            print('y or n\n')
-print('No more CSV or TSV files to convert!')
+            print('Input y or n\n')
+print('No more csv or tsv files to convert!')
