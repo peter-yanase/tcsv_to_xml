@@ -1,7 +1,8 @@
-# tcsv_to_xml
-# By Peter Yanase
-# Version: 1.1
-# Built on: Apr 21, 2021
+# title: tcsv_to_xml
+# description: A Python script for batch-converting csv and/or tsv files to xml.
+# author: Peter Yanase
+# version: 1.1
+# license: GPLv3
 
 import os
 import csv
@@ -26,8 +27,8 @@ for file_name in os.listdir():
             header = '<?xml version="1.0" encoding="UTF-8"?>\n<' + collection + '>\n'
             footer = '</' + collection + '>'
             output_file_name = file_name[:-3] + 'xls'
-            output_contents = open(output_file_name, 'w')
-            output_contents.write(header)
+            output_file = open(output_file_name, 'w')
+            output_file.write(header)
             for row in source_data:
                 if first_row:
                     for tag in row :
@@ -35,12 +36,12 @@ for file_name in os.listdir():
                         tags.append(tag)
                     first_row = False
                 else:
-                    output_contents.write('\t<' + entry + '>\n')
+                    output_file.write('\t<' + entry + '>\n')
                     for column_nr in range(len(tags)):
-                        output_contents.write('\t\t<' + tags[column_nr] + '>' + row[column_nr] + '</' + tags[column_nr] + '>\n')
-                    output_contents.write('\t</' + entry + '>\n')
-            output_contents.write(footer)
-            output_contents.close()
+                        output_file.write('\t\t<' + tags[column_nr] + '>' + row[column_nr] + '</' + tags[column_nr] + '>\n')
+                    output_file.write('\t</' + entry + '>\n')
+            output_file.write(footer)
+            output_file.close()
             print('XML file generated:', output_file_name + '\n')
             break
         elif do_or_not == 'n':
